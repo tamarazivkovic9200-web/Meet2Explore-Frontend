@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { getProfile, updateProfile } from "../../services/userService";
 import "./Profile.css";
-
-
+import Swal from "sweetalert2";
 
 export default function Profile() {
   const [user, setUser] = useState(null);
@@ -40,17 +39,23 @@ export default function Profile() {
     try {
       const updated = await updateProfile(form);
       setUser(updated);
-      alert("Profile updated!");
+
+      Swal.fire({
+        title: "Saved!",
+        text: "Your profile has been updated.",
+        icon: "success",
+        confirmButtonColor: "#4a90e2",
+      });
     } catch (err) {
-      console.error(err);
-      alert("Error updating profile");
+      Swal.fire("Error", "Could not update profile", "error");
     }
   }
 
   const avatarSrc =
     form.avatar ||
     (form.gender === "female"
-      ? "/avatars/female.png" : "/avatars/male.png");
+      ? "/avatars/female.png"
+      : "/avatars/male.png");
 
   return (
     <div className="profile-page">
