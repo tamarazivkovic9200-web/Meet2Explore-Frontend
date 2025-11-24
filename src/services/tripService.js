@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://meet2explore-17e5b6e60cab.herokuapp.com/trips";
+const API_URL = "https://meet2explore-17e5b6e60cab.herokuapp.com/api/trips";
 
 
 // CREATE TRIP
