@@ -22,7 +22,7 @@ export default function ViewActivities() {
 
         // Load trips in this city
         const tripsRes = await fetch(
-          `http://localhost:3000/api/trips/city/${cityId}`
+          `https://meet2explore-17e5b6e60cab.herokuapp.com/api/trips/city/${cityId}`
         );
         const tripsData = await tripsRes.json();
         setTrips(tripsData);
@@ -37,26 +37,26 @@ export default function ViewActivities() {
   }, [cityId]);
 
   async function handleJoin(tripId) {
-    await fetch(`http://localhost:3000/api/trips/${tripId}/join`, {
+    await fetch(`https://meet2explore-17e5b6e60cab.herokuapp.com/api/trips/${tripId}/join`, {
       method: "POST",
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });
 
     // Reload data
     const newTrips = await (
-      await fetch(`http://localhost:3000/api/trips/city/${cityId}`)
+      await fetch(`https://meet2explore-17e5b6e60cab.herokuapp.com/api/trips/city/${cityId}`)
     ).json();
     setTrips(newTrips);
   }
 
   async function handleLeave(tripId) {
-    await fetch(`http://localhost:3000/api/trips/${tripId}/leave`, {
+    await fetch(`https://meet2explore-17e5b6e60cab.herokuapp.com/api/trips/${tripId}/leave`, {
       method: "POST",
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });
 
     const newTrips = await (
-      await fetch(`http://localhost:3000/api/trips/city/${cityId}`)
+      await fetch(`https://meet2explore-17e5b6e60cab.herokuapp.com/api/trips/city/${cityId}`)
     ).json();
     setTrips(newTrips);
   }
